@@ -26,11 +26,30 @@ describe('Testing in <AddCategory/>', () => {
         expect(wrapper.find('p').text().trim()).toBe(value);
     });        
         
-    test("shouldn't post info", () => {
+    test("shouldn't post form info", () => {
         wrapper.find('form').simulate('submit', { preventDefault(){} });
 
         expect( setCategories ).not.toHaveBeenCalled();
     });
+
+    test('should call setCategoties and clear input text', () => {
+        const value = "Hola Mundo";
+
+        //1. Simulate input Change
+        wrapper.find('input').simulate('change', { target: { value } } );
+
+        //2. Simulate submit
+        wrapper.find('form').simulate('submit', { preventDefault(){} });
+        
+        //3. setCategories should be called
+        expect( setCategories ).toHaveBeenCalled();
+        expect( setCategories ).toHaveBeenCalledTimes(1);
+        expect( setCategories ).toHaveBeenCalledWith( expect.any(Function) );
+
+        //4. the input value should be '' 
+        expect(wrapper.find('input').prop('value')).toBe('');
+    });
+    
     
 })
     
