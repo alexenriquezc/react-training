@@ -6,11 +6,9 @@ import useFetchGifs from '../../hooks/useFetchGifs';
 
 jest.mock('../../hooks/useFetchGifs');
 
-
 describe('Testing on <GifGrid/>', () => {
 
     const category = 'Samurai X';
-    // let wrapper = shallow( <GifGrid category={category}/>);
 
     test('should shows correctly', () => {
         const wrapper = shallow( <GifGrid category={category}/>);
@@ -36,7 +34,7 @@ describe('Testing on <GifGrid/>', () => {
         });
 
         const wrapper = shallow( <GifGrid category={category}/>);
-
+        expect(wrapper.find('p').exists()).toBe(false);
     })
     
     
