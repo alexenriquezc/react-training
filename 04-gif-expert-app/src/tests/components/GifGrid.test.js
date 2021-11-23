@@ -2,7 +2,7 @@ import { GifGrid } from "../../components/GifGrid"
 import { shallow } from 'enzyme';
 import React from "react";
 import '@testing-library/jest-dom';
-import useFetchGifs from '../../hooks/useFetchGifs';
+import {useFetchGifs} from '../../hooks/useFetchGifs';
 
 jest.mock('../../hooks/useFetchGifs');
 
@@ -11,12 +11,13 @@ describe('Testing on <GifGrid/>', () => {
     const category = 'Samurai X';
 
     test('should shows correctly', () => {
-        const wrapper = shallow( <GifGrid category={category}/>);
+        
         useFetchGifs.mockReturnValue({
             data: [],
             loading: true
         });
 
+        const wrapper = shallow( <GifGrid category={category}/>);
         expect(wrapper).toMatchSnapshot();
     });
 
