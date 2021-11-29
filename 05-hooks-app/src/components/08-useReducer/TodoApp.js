@@ -65,6 +65,7 @@ export const TodoApp = () => {
           <ul className="list-group list-group-flush">
             {todos.map((todo, i) => (
               <li key={todo.id} className="list-group-item">
+                <span role="img" aria-label="sheep">🐑</span>
                 <p
                   className={`${todo.done && "complete"}`}
                   onClick={() => handleToggle(todo.id)}
